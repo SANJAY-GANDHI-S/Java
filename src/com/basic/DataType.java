@@ -1,3 +1,5 @@
+package com.basic;
+
 import java.util.Scanner;
 
 public class DataType {
@@ -36,7 +38,9 @@ public class DataType {
         boolean bool = true;
 
         String str = "Hello World";
+    }
 
+    public static  void inputAndOutput() {
         // Input
         System.out.println("Please, Enter your name");
         Scanner sc = new Scanner(System.in);
@@ -44,18 +48,5 @@ public class DataType {
 
         //Output
         System.out.println("My name is " + name);
-
-        System.out.println(practice(123));
-    }
-
-    public static int practice(int num) {
-//        int val = 1785757879;
-        int count = 0;
-        while (num > 0) {
-            int temp = num % 10;
-            count = count * 10 + temp;
-            num = num / 10;
-        }
-        return count;
     }
 }

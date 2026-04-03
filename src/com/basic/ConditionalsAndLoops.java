@@ -1,4 +1,11 @@
+package com.basic;
+
 public class ConditionalsAndLoops {
+
+    public static void main(String[] args) {
+
+    }
+
     public void conditional(int num) {
         // if else :-
         //  A conditional statement is used to make decisions in a program. It checks a condition and executes different
