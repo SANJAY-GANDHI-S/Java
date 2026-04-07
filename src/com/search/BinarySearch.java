@@ -6,8 +6,8 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         BinarySearch bs = new BinarySearch();
-        int[] a = { 1, 3, 5, 9, 2, 1};
-        System.out.println(bs.findInMountainArray(5, a));
+        int[] a = {1,3};
+        System.out.println(bs.search(a, 2));
     }
 
     public static int binarySearch(int[] arr, int target) {
@@ -196,7 +196,7 @@ public class BinarySearch {
         return start;
     }
 
-    // // Leet Code 1095
+    // Leet Code 1095
     public int findInMountainArray(int target, int[] mountainArr) {
         int peakElement = findPeakIndexInMountainArray(mountainArr);
         int ans = binarySearchAseAndDesd(mountainArr, target, true, 0, peakElement);
@@ -204,5 +204,46 @@ public class BinarySearch {
             ans = binarySearchAseAndDesd(mountainArr, target, false, peakElement, mountainArr.length -1);
         }
         return ans;
+    }
+
+    // Leet Code 33
+    public int search(int[] nums, int target) {
+
+        int pivot = findPivot(nums);
+
+        if (pivot == -1) {
+            return binarySearchInRange(nums, target, 0, nums.length - 1);
+        }
+
+        if ( nums[pivot] == target ) {
+            return pivot;
+        }
+
+        if ( nums[0] <= target ) {
+            return binarySearchInRange(nums, target, 0, pivot);
+        }
+
+        return binarySearchInRange(nums, target, pivot + 1, nums.length - 1);
+    }
+
+    public int findPivot(int[] arr) {
+        int start = 0;
+        int end = arr.length -1;
+
+        while ( start <= end ) {
+            int mid = start + ( end - start ) / 2;
+            if( mid < end && arr[mid] > arr[mid + 1] ) {
+                return mid;
+            }
+            if ( mid > start && arr[mid] < arr[mid - 1]){
+                return mid - 1;
+            }
+            if ( arr[start] >= arr[mid]) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return -1;
     }
 }
