@@ -6,8 +6,8 @@ public class BinarySearch {
 
     public static void main(String[] args) {
         BinarySearch bs = new BinarySearch();
-        int[] a = {1,3};
-        System.out.println(bs.search(a, 2));
+        int[] a = {2,3,1};
+        System.out.println(bs.findCount(a));
     }
 
     public static int binarySearch(int[] arr, int target) {
@@ -107,7 +107,7 @@ public class BinarySearch {
         return  end;
     }
 
-    // Leet Code 744
+    // Leet Code 744. Find Smallest Letter Greater Than Target
     public char nextGreatestLetter(char[] letters, char target) {
 
         int start = 0;
@@ -126,7 +126,7 @@ public class BinarySearch {
 
     }
 
-    // Leet Code 34
+    // Leet Code 34. Find First and Last Position of Element in Sorted Array
     public int[] searchRange(int[] nums, int target) {
         int start = findIndexNumber34(nums, target, true);
         int end = -1;
@@ -179,7 +179,7 @@ public class BinarySearch {
         return new int[]{ start, end};
     }
 
-    // Leet Code 852
+    // Leet Code 852. Peak Index in a Mountain Array
     public int findPeakIndexInMountainArray(int[] arr) {
         int start = 0;
         int end = arr.length -1;
@@ -196,7 +196,7 @@ public class BinarySearch {
         return start;
     }
 
-    // Leet Code 1095
+    // Leet Code 1095. Find in Mountain Array
     public int findInMountainArray(int target, int[] mountainArr) {
         int peakElement = findPeakIndexInMountainArray(mountainArr);
         int ans = binarySearchAseAndDesd(mountainArr, target, true, 0, peakElement);
@@ -206,7 +206,7 @@ public class BinarySearch {
         return ans;
     }
 
-    // Leet Code 33
+    // Leet Code 33. Search in Rotated Sorted Array
     public int search(int[] nums, int target) {
 
         int pivot = findPivot(nums);
@@ -245,5 +245,11 @@ public class BinarySearch {
             }
         }
         return -1;
+    }
+
+    // Find the rotation count in Rotated Sorted Array
+    public int findCount(int[] arr) {
+        int pivot = findPivot(arr);
+        return pivot + 1;
     }
 }
