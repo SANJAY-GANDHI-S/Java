@@ -1,16 +1,14 @@
 package com.leetcode;
 
-import java.util.Arrays;
-
-public class LeetCodeProblem_01 {
+public class LeetCodeSolution {
 
     public static void main(String[] args) {
-        LeetCodeProblem_01 lc = new LeetCodeProblem_01();
+        LeetCodeSolution lc = new LeetCodeSolution();
 
         String[] strs = { "flower","flow","flight" };
-        int[] arr = {1,2,3,4,5,6,7};
+        int[] arr = {4,1,2,1,2};
         lc.rotate(arr, 3);
-        System.out.println(lc.strStr("dadbutsad", "sad"));
+        System.out.println(lc.singleNumber(arr));
     }
 
     // LeetCode 01: https://leetcode.com/problems/two-sum/description/
@@ -144,6 +142,33 @@ public class LeetCodeProblem_01 {
             ans = s.toString();
         }
 
+        return ans;
+    }
+
+    // Leet Code 66: https://leetcode.com/problems/plus-one/description/
+    public int[] plusOne(int[] digits) {
+        int len = digits.length - 1;
+
+        while ( len >= 0 ) {
+            if ( digits[len] < 9 ) {
+                digits[len]++;
+                return digits;
+            }
+            digits[len] = 0;
+            len--;
+        }
+
+        int[] ans = new int[digits.length + 1];
+        ans[0] = 1;
+
+        return ans;
+    }
+
+    public int singleNumber(int[] nums) {
+        int ans = 0;
+        for (int i : nums) {
+            ans = ans ^ nums[i];
+        }
         return ans;
     }
 

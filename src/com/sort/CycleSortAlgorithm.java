@@ -8,10 +8,10 @@ public class CycleSortAlgorithm {
     public static void main(String[] args) {
         CycleSortAlgorithm cs = new CycleSortAlgorithm();
 
-        int[] nums = {1,2,2,4};
+        int[] nums = {1,2,0};
 
 
-        System.out.println(Arrays.toString(cs.findErrorNums(nums)));
+        System.out.println(cs.firstMissingPositive(nums));
     }
 
     public void cycleSort(int[] nums) {
@@ -196,5 +196,30 @@ public class CycleSortAlgorithm {
             }
         }
         return new int[]{-1,-1};
+    }
+
+    // Leet Code 41: https://leetcode.com/problems/first-missing-positive/description/
+    public int firstMissingPositive(int[] nums) {
+        int i = 0;
+        while ( i < nums.length ) {
+            int correct = nums[i] - 1;
+            if ( nums[i] > 0 && nums[i] < nums.length && nums[i] != nums[correct] ) {
+                int temp = nums[i];
+                nums[i] = nums[correct];
+                nums[correct] = temp;
+            } else {
+                i++;
+            }
+        }
+        return firstMissingPositiveIndex(nums);
+    }
+
+    public int firstMissingPositiveIndex(int[] nums) {
+        for (int i = 0; i < nums.length; i++) {
+            if ( i + 1 != nums[i] ) {
+                return i + 1;
+            }
+        }
+        return nums.length + 1;
     }
 }
