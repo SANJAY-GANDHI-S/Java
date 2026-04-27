@@ -8,7 +8,7 @@ public class LeetCodeSolution {
         String[] strs = { "flower","flow","flight" };
         int[] arr = {4,1,2,1,2};
         lc.rotate(arr, 3);
-        System.out.println(lc.singleNumber(arr));
+        System.out.println(lc.isPowerOfTwo(3));
     }
 
     // LeetCode 01: https://leetcode.com/problems/two-sum/description/
@@ -192,6 +192,22 @@ public class LeetCodeSolution {
             start++;
             end--;
         }
+    }
+
+    // LeetCode 231: https://leetcode.com/problems/power-of-two/description/
+    // LeetCode 326: https://leetcode.com/problems/power-of-three/description/
+    // LeetCode 342: https://leetcode.com/problems/power-of-four/description/
+    public boolean isPowerOfTwo(int n) {
+        double num = 0;
+        double pow = 0;
+        while (n >= pow){
+            pow = Math.pow(2, num);
+            if ( pow == n ) {
+                return true;
+            }
+            num++;
+        }
+        return false;
     }
 
     // Leet Code 509: https://leetcode.com/problems/fibonacci-number/description/
