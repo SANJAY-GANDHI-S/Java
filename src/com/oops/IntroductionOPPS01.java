@@ -12,7 +12,7 @@ package com.oops;
 // Garbage Collection:-
 //  Garbage Collection (GC) in Java is the process of automatically deleting unused objects from memory.
 
-public class BasicOpps {
+public class IntroductionOPPS01 {
     public static void main(String[] args) {
         // Create Object for Student Class
         Student student = new Student();
