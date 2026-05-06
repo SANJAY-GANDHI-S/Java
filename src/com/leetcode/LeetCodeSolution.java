@@ -1,14 +1,16 @@
 package com.leetcode;
 
+import java.util.Arrays;
+
 public class LeetCodeSolution {
 
     public static void main(String[] args) {
         LeetCodeSolution lc = new LeetCodeSolution();
 
         String[] strs = { "flower","flow","flight" };
-        int[] arr = {4,1,2,1,2};
-        lc.rotate(arr, 3);
-        System.out.println(lc.isPowerOfTwo(3));
+        int[] arr = {3,2,3};
+        lc.moveZeroes(arr);
+        System.out.println(lc.majorityElement(arr));
     }
 
     // LeetCode 01: https://leetcode.com/problems/two-sum/description/
@@ -164,11 +166,30 @@ public class LeetCodeSolution {
         return ans;
     }
 
+    // LeetCode 136: https://leetcode.com/problems/single-number/
     public int singleNumber(int[] nums) {
         int ans = 0;
         for (int i : nums) {
             ans = ans ^ nums[i];
         }
+        return ans;
+    }
+
+    // LeetCode 169: https://leetcode.com/problems/majority-element/description/
+    public int majorityElement(int[] nums) {
+        int count = 0;
+        int ans = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (count == 0) {
+                ans = nums[i];
+            }
+            if (ans == nums[i]) {
+                count++;
+            } else {
+                count--;
+            }
+        }
+
         return ans;
     }
 
@@ -194,6 +215,37 @@ public class LeetCodeSolution {
         }
     }
 
+    // LeetCode 258: https://leetcode.com/problems/add-digits/description/
+    public int addDigits(int num) {
+        int addNum = 0;
+        while ( num > 0 ) {
+            int temp = num % 10;
+            addNum += temp;
+            num /= 10;
+        }
+        if ( addNum >= 10 ) {
+            return addDigits(addNum);
+        }
+        return addNum;
+    }
+
+    // LeetCode 283: https://leetcode.com/problems/move-zeroes/description/
+    public void moveZeroes(int[] nums) {
+        if (nums.length == 1) {
+            return;
+        }
+        int count = 0;
+
+        for (int i = 0; i < nums.length; i++) {
+            if (nums[i] != 0) {
+                int temp = nums[count];
+                nums[count] = nums[i];
+                nums[i] = temp;
+                count++;
+            }
+        }
+    }
+
     // LeetCode 231: https://leetcode.com/problems/power-of-two/description/
     // LeetCode 326: https://leetcode.com/problems/power-of-three/description/
     // LeetCode 342: https://leetcode.com/problems/power-of-four/description/
@@ -208,6 +260,71 @@ public class LeetCodeSolution {
             num++;
         }
         return false;
+    }
+
+    // Leet Code 344: https://leetcode.com/problems/reverse-string/description/
+    public void reverseString(char[] s) {
+        int start = 0;
+        int end = s.length - 1;
+
+        while (start < end) {
+            char temp = s[start];
+            s[start] = s[end];
+            s[end] = temp;
+
+            start++;
+            end--;
+        }
+    }
+
+    //Leet Code 345: https://leetcode.com/problems/reverse-vowels-of-a-string/description/
+    public String reverseVowels(String s) {
+        int start = 0;
+        int end = s.length() - 1;
+        char[] ch = s.toCharArray();
+
+        while ( start < end ) {
+            if (!isVowel(ch[start])) {
+                start++;
+            } else if (!isVowel(ch[end])) {
+                end--;
+            } else {
+                char temp = ch[start];
+                ch[start] = ch[end];
+                ch[end] = temp;
+                start++;
+                end--;
+            }
+        }
+
+        return String.valueOf(ch);
+    }
+
+    public boolean isVowel(char ch) {
+        if ( ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' ||
+                ch == 'A' || ch == 'E' || ch == 'I' || ch == 'O' || ch == 'U') {
+            return true;
+        }
+
+        return false;
+    }
+
+    // Leet Code 507: https://leetcode.com/problems/perfect-number/description/
+    public boolean checkPerfectNumber(int num) {
+        if (num <= 1) {
+            return false;
+        }
+        int i = 2;
+        int addNum = 1;
+
+        while ( i  <= num / 2 ) {
+            if ( num % i == 0 ) {
+                addNum += i;
+            }
+            i++;
+        }
+
+        return num == addNum;
     }
 
     // Leet Code 509: https://leetcode.com/problems/fibonacci-number/description/
